@@ -1,5 +1,6 @@
 'use strict'
 
+require('dotenv').config({path: './dev.env'})
 const api = require('./src/api')
 const Hapi = require('hapi')
 
