@@ -1,0 +1,22 @@
+service: citizenplane-mailer
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+plugins:
+  - serverless-offline
+  - serverless-domain-manager
+custom:
+  customDomain:
+    domainName: mailer.citizenplane.com
+    certificateName: '*.citizenplane.com'
+  serverless-offline:
+    port: 8005
+functions:
+  api:
+    handler: index.handler
+    events:
+      - http:
+          path: "{proxy+}"
+          method: any
+          cors: true
