@@ -8,4 +8,6 @@ npm-debug.log
 dev.env
 prod.env
 logs/
+.serverless/
+build/
 .DS_Store

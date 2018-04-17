@@ -3,6 +3,9 @@ service: citizenplane-service
 provider:
   name: aws
   runtime: nodejs8.10
+  stage: prod
+  apiKeys:
+    - service-key
 plugins:
   - serverless-domain-manager
 custom:
