@@ -4,6 +4,7 @@
   "description": "Service for CitizenPlane",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alexis Ohayon",
@@ -17,7 +18,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
-    "serverless-offline": "^3.20.2",
+    "nodemon": "^1.17.3",
     "serverless-domain-manager": "^2.3.6"
   },
   "dependencies": {
