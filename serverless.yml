@@ -1,17 +1,20 @@
 service: citizenplane-service
 
-provider:
-  name: aws
-  runtime: nodejs8.10
-  stage: prod
-  apiKeys:
-    - service-key
+package:
+  exclude:
+    - secrets.yml
 plugins:
   - serverless-domain-manager
 custom:
   customDomain:
     domainName: service.citizenplane.com
     certificateName: '*.citizenplane.com'
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  apiKeys:
+    - service-key
 functions:
   api:
     handler: index.handler
@@ -20,3 +23,4 @@ functions:
           path: "{proxy+}"
           method: any
           cors: true
+          private: true
