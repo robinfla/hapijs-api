@@ -1,18 +1,16 @@
 module.exports = {
   development: {
-    migrations: { tableName: 'knex_migrations' },
-    seeds: { tableName: './seeds' },
-
-    client: 'mysql',
+        client: 'postgresql',
     connection: {
-      host: '127.0.0.1',
-      port: 3306,
-      user: 'robin',
-      password: 'password',
-      insecureAuth: true,
-
-      database: 'my_db',
-      charset: 'utf8',
-    }
+            host: 'citizen.cqa7huawo0be.eu-west-1.rds.amazonaws.com',
+            port: '5432',
+            database: 'citizen',
+            user:     'robin',
+            password: 'password'
+    },
+    migrations: {
+            tableName: 'knex_migrations'
+    },
+        seeds: { tableName: './seeds'  },
   }
 };

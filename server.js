@@ -3,6 +3,7 @@
 require('dotenv').config({path: './dev.env'})
 const api = require('./src/api')
 const Hapi = require('hapi')
+import Knex from './knex';
 
 const server = Hapi.server({
   host: 'localhost',

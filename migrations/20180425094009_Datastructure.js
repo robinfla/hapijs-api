@@ -2,7 +2,7 @@ exports.up = function(knex, Promise) {
   return knex
     .schema
     .createTable('users', function(usersTable) {
-      usersTable.increment();
+      usersTable.increments();
 
       usersTable.string('firstName', 50).notNullable();
       usersTable.string('lastName', 50).notNullable();
@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
       usersTable.timestamp('created_at').notNullable();
     })
     .createTable('flights', function(flightsTable) {
-      flightsTable.increment();
+      flightsTable.increments();
       flightsTable.string('owner', 36).references('guid').inTable('users');
 
       flightsTable.string('origin', 3).notNullable();
@@ -24,7 +24,7 @@ exports.up = function(knex, Promise) {
       flightsTable.timestamp('created_at').notNullable();
     })
     .createTable('bookings', function(bookingsTable) {
-      bookingsTable.increment();
+      bookingsTable.increments();
       bookingsTable.string('owner', 36).references('guid').inTable('flights');
 
       bookingsTable.string('firstName', 50).notNullable();
