@@ -8,25 +8,24 @@ exports.up = function(knex, Promise) {
       usersTable.string('lastName', 50).notNullable();
       usersTable.string('email', 250).notNullable().unique();
       usersTable.string('password', 128).notNullable();
-      usersTable.string('guid', 50).notNullable().unique();
+      usersTable.string('userId', 50).notNullable().unique();
       usersTable.timestamp('created_at').notNullable();
     })
     .createTable('flights', function(flightsTable) {
       flightsTable.increments();
-      flightsTable.string('owner', 36).references('guid').inTable('users');
+      flightsTable.string('userId', 36).references('userId').inTable('users');
 
       flightsTable.string('origin', 3).notNullable();
       flightsTable.string('destination', 3).notNullable();
       flightsTable.decimal('price').notNullable();
       flightsTable.integer('seatsAvailable').notNullable();
       flightsTable.enu('status', ['OPEN', 'CLOSED', 'CANCELLED']);
-      flightsTable.string('guid', 36).notNullable().unique();
+      flightsTable.string('flightId', 36).notNullable().unique();
       flightsTable.timestamp('created_at').notNullable();
     })
     .createTable('bookings', function(bookingsTable) {
       bookingsTable.increments();
-      bookingsTable.string('owner', 36).references('guid').inTable('flights');
-
+      bookingsTable.string('flightId', 36).references('flightId').inTable('flights');
       bookingsTable.string('firstName', 50).notNullable();
       bookingsTable.string('lastName', 50).notNullable();
       bookingsTable.string('email', 250).notNullable();

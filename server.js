@@ -1,14 +1,17 @@
 'use strict'
 
 require('dotenv').config({path: './dev.env'})
-const api = require('./src/api')
-const Hapi = require('hapi')
-import Knex from './knex';
+const api = require('./src/api');
+const Hapi = require('hapi');
+const Knex = require('knex');
+const bookingRoutes = require('./src/routes/bookings/index.js');
+const userRoutes = require('./src/routes/users/index.js');
+const flightRoutes = require('./src/routes/flights/index.js');
 
 const server = Hapi.server({
   host: 'localhost',
   port: 8005
-})
+});
 
 // Start the server
 async function start () {
@@ -22,4 +25,8 @@ async function start () {
   console.log('Server running at:', server.info.uri)
 }
 
-start()
+start();
+
+server.route(userRoutes);
+server.route(bookingRoutes);
+server.route(flightRoutes);
