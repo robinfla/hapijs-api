@@ -7,7 +7,6 @@ plugins:
   - serverless-domain-manager
 custom:
   customDomain:
-    domainName: service.citizenplane.com
     certificateName: '*.citizenplane.com'
 provider:
   name: aws
