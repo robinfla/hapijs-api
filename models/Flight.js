@@ -1,3 +1,5 @@
+'use strict';
+
 const { Model } = require('objection');
 
 const Knex = require('knex') ({
@@ -13,7 +15,7 @@ const Knex = require('knex') ({
 
 Model.knex(Knex);
 
-class Flights extend Model {
+class Flight extends Model {
   static get tableName() {
     return 'flights';
   }
@@ -44,7 +46,8 @@ class Flights extend Model {
   }
 
   static get jsonSchema() {
-    type: 'object',
+    return {
+      type: 'object',
       required: ['userId', 'origin', 'destination', 'price', 'seatsAvailable', 'status'],
       properties: {
         userId: {type: 'string'},
@@ -53,5 +56,8 @@ class Flights extend Model {
         price: {type: 'integer'},
         status: {type: 'string', enum: ['CLOSED', 'CANCELLED', 'OPEN']},
       }
+    };
   }
 }
+
+module.exports = Flight;

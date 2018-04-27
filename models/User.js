@@ -1,3 +1,5 @@
+'use strict';
+
 const { Model } = require('objection');
 
 const Knex = require('knex') ({
@@ -13,7 +15,7 @@ const Knex = require('knex') ({
 
 Model.knex(Knex);
 
-class Users extend Model {
+class User extends Model {
   static get tableName() {
     return 'users';
   }
@@ -34,7 +36,8 @@ class Users extend Model {
   }
 
   static get jsonSchema() {
-    type: 'object',
+    return {
+      type: 'object',
       required: ['firstName', 'lastName', 'email', 'password', 'created_at'],
       properties: {
         firstName: {type: 'string', minLength: 1, maxLength: 255},
@@ -42,5 +45,7 @@ class Users extend Model {
         email: {type: 'string'},
         password: {type: 'string'},
       }
+    };
   }
 }
+module.exports = User;
